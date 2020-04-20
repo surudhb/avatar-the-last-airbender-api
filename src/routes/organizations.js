@@ -1,20 +1,28 @@
 const express = require('express')
 const router = express.Router()
 
-module.exports = router;
+const { isAlphabetical } = require('../utils/Validator')
 
 /**
- * @example /api/organizations/${organzationName}
+ * @example /api/organizations
+ * @returns catch all to return all organizations
+ */
+router.get('/', (req, res, next) => {
+    if(req.params.count > 0) next()
+    res.status(200).json({msg: `Sending you data for all organizations`})
+})
+
+/**
+ * @example /api/organizations/:org
  * @returns list of members of organization OR error if org does not exist
  */
 router.get('/:name', (req, res) => {
-    res.json({msg: `Requesting data for org: ${req.params.name}`})
+    const org = req.params.org
+    if(isAlphabetical(org)) {
+        res.status(200).json({msg: `Requesting data for org: ${org}`})    
+    } else {
+        next(new Error(`Invalid input: ${org}. Organization names should only contain alphabetical characters.`))
+    }
 })
 
-/**
- * @example /api/organizations/member/${memberName}
- * @returns list of organizations member is part of or error if member does not exist
- */
-router.get('/member/:member', (req,res) => {
-    res.json({msg: `Requesting org data for member: ${req.params.member}`})
-})
+module.exports = router;
