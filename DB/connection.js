@@ -14,12 +14,14 @@ const morph = (URI) => {
     return `${pURI.protocol}://${pURI.username}:****@${pURI.hostname}`
 }
 
+const log = (state, URI) => console.log(`DB ${state}: ${morph(URI)}`)
+
 module.exports = async () => {
     try {
-        mongoose.connect(URI, params)
-        mongoose.connection.on('open', () => console.log(`DB open: ${morph(URI)}`))
-        mongoose.connection.on('close', () => console.log(`DB close: ${morph(URI)}`))
-        mongoose.connection.on('error', () => console.error(`DB error: ${morph(URI)}`))
+        mongoose.connection.on('open', () => log('open', URI))
+        mongoose.connection.on('close', () => log('close', URI))
+        mongoose.connection.on('error', () => log('error', URI))
+        await mongoose.connect(URI, params)
     } catch(err) {
         throw new Error(`Connection to DB failed: ${err}`)
     }
