@@ -4,7 +4,7 @@ const router = express.Router()
 const { isNumeric, isAlphabetical } = require('../utils/Validator')
 
 /**
- * @example /api/episodes
+ * @route /api/episodes
  * @returns catch all to return all episode data
  */
 router.get('/', (req, res, next) => {
@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 })
 
 /**
- * @example /api/episodes/:id where id= 109 for Season 1 Episode 9
+ * @route /api/episodes/:id where id= 109 for Season 1 Episode 9
  * @returns synopsis, characters, title, id, runtime, airdate, writer, locations, book
  */
 router.get('/id/:id', (req, res) => {
@@ -27,7 +27,7 @@ router.get('/id/:id', (req, res) => {
 
 
 /**
- * @example /api/episodes/title/:title where title = The boy in the iceberg
+ * @route /api/episodes/title/:title where title = The boy in the iceberg
  * @returns synopsis, characters, id, title, runtime, airdate, writer, locations, book
  */
 router.get('/title/:title', (req, res) => {

@@ -4,7 +4,7 @@ const router = express.Router()
 const { isAlphabetical } = require('../utils/Validator')
 
 /**
- * @example /api/organizations
+ * @route /api/organizations
  * @returns catch all to return all organizations
  */
 router.get('/', (req, res, next) => {
@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 })
 
 /**
- * @example /api/organizations/:org
+ * @route /api/organizations/:org
  * @returns list of members of organization OR error if org does not exist
  */
 router.get('/:name', (req, res) => {

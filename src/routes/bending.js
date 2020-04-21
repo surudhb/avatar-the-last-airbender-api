@@ -4,7 +4,7 @@ const router = express.Router()
 const { isAlphabetical } = require('../utils/Validator')
 
 /**
- * @example /api/bending
+ * @route /api/bending
  * @returns catch all to return all bending forms
  */
 router.get('/', (req, res, next) => {
@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 })
 
 /**
- * @example /api/bending/:form
+ * @route /api/bending/:form
  * @returns notable moves, notable users, first appeared, creator
  */
 router.get('/:form', (req, res) => {

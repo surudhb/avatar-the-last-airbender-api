@@ -4,7 +4,7 @@ const router = express.Router()
 const { isAlphabetical } = require('../utils/Validator')
 
 /**
- * @example /api/locations
+ * @route /api/locations
  * @returns catch all to return all locations
  */
 router.get('/', (req, res, next) => {
@@ -13,7 +13,7 @@ router.get('/', (req, res, next) => {
 })
 
 /**
- * @example /api/locations/:name
+ * @route /api/locations/:name
  * @returns general information and popular members of group
  */
 router.get('/:location', (req, res) => {

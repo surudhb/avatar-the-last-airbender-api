@@ -4,7 +4,7 @@ const router = express.Router()
 const { isAlphabetical } = require('../utils/Validator')
 
 /**
- * @example /api/characters
+ * @route /api/characters
  * @returns catch all to return all characters
  */
 router.get('/', (req, res, next) => {
@@ -13,12 +13,11 @@ router.get('/', (req, res, next) => {
 })
 
 /**
- * @example /api/characters/:name
+ * @route /api/characters/:name
  * @returns nation, first appeared, affiliation, teams, aliases, love interest, age, overview
  */
 router.get('/:name', (req, res, next) => {
     const name = req.params.name
-    console.log(name)
     if(isAlphabetical(name)) {
         res.status(200).json({msg: `Requesting data for character: ${name}`})
     } else {
