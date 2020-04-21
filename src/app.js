@@ -2,10 +2,9 @@ require('dotenv').config()
 const express = require('express')
 const path = require('path')
 
-require('../DB/connection')()
+require('./DB/connection')()
 
 const PORT = process.env.PORT || 5000
-
 
 const app = express()
 
@@ -30,10 +29,11 @@ app.use((req, res, next) => {
 })
 
 /**
- * @todo ERR HANDLER FOR BAD REQUESTS
+ * @TODO ERR HANDLER FOR BAD REQUESTS
  */
 app.use((err, req, res, next) => {
-    // console.error(err.stack)
+    console.log(`in error handler`)
+    console.error(err.stack)
     // figure out where to add err.message to DOM
     res.status(400).sendFile(path.join(__dirname, '../public/400.html'))
 })

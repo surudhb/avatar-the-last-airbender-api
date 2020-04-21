@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const URI = encodeURI(process.env.DB_CONNECTION)
+const URI = `mongodb://${process.env.DB_USER}:${escape(process.env.DB_PASSWORD).replace('@', '%40')}@${process.env.DB_SUFFIX}`
 
 const params = {
     useCreateIndex: true,
@@ -10,8 +10,7 @@ const params = {
 }
 
 const morph = (URI) => {
-    const pURI = new URL(URI)
-    return `${pURI.protocol}://${pURI.username}:****@${pURI.hostname}`
+    return `${process.env.DB_USER}`
 }
 
 const log = (state, URI) => console.log(`DB ${state}: ${morph(URI)}`)

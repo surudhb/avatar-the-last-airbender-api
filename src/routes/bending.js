@@ -3,17 +3,21 @@ const router = express.Router()
 
 const { isAlphabetical } = require('../utils/Validator')
 
+const Bending = require('../DB/models/bending')
+
 /**
- * @route /api/bending
+ * @route GET /api/bending
  * @returns catch all to return all bending forms
  */
 router.get('/', (req, res, next) => {
     if(req.params.count > 0) next()
-    res.status(200).json({msg: `Sending you data for all types of bending`})
+    Bending.find()
+    .then(data => res.status(200).json(data))
+    .catch(next)
 })
 
 /**
- * @route /api/bending/:form
+ * @route GET /api/bending/:form
  * @returns notable moves, notable users, first appeared, creator
  */
 router.get('/:form', (req, res) => {

@@ -1,6 +1,6 @@
-const mongoose, { Schema } = require('mongoose')
+const mongoose = require('mongoose')
 
-const locationSchema = new Schema({
+const locationSchema = new mongoose.Schema({
     name: { type: String, required: true },
     type: {type: String, required: true}, // nation, city, vacation spot, dessert
     capital: String,

@@ -1,6 +1,6 @@
-const mongoose, { Schema } = require('mongoose')
+const mongoose = require('mongoose')
 
-const organizationSchema = new Schema({
+const organizationSchema = new mongoose.Schema({
     name: { type: String, required: true },
     notableMembers: [String],
     founders: [String],
