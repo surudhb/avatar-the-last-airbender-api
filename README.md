@@ -12,3 +12,8 @@
 * index.html
 * Test with jest
 * Pagination -> either with mongo skip or return all and paginate client side using middleware
+
+
+
+# Bending
+* Add sub bending types
