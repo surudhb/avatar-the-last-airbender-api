@@ -8,7 +8,9 @@ const bendingSchema = new mongoose.Schema({
     notableUsers: { type: [String], required: true },
     techniques: { type: [String], required: true },
     advancedTechniques: [String],
-    specializations: [String]
+    specializations: [String],
+    strengths: [String],
+    weaknesses: [String]
 })
 
 module.exports = mongoose.model('bendings', bendingSchema, 'bending')

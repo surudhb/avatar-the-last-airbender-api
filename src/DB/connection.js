@@ -9,6 +9,9 @@ const params = {
     useUnifiedTopology: true
 }
 
+/**
+ * @TODO log connection string with redacted username and password 
+ */
 const morph = (URI) => {
     return `${process.env.DB_USER}`
 }
