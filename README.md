@@ -17,3 +17,19 @@
 
 # Bending
 * Add sub bending types
+
+
+# Characters
+* Add major and minor characters
+
+
+# Episodes
+* Lost episodes
+
+# Locations
+* Add relevant nations, cities, spots
+
+
+# Organizations
+* Add teams
+
