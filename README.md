@@ -33,3 +33,5 @@
 # Organizations
 * Add teams
 
+# Quotes
+* Add a famous lines route { by: "", quote: "" }
