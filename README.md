@@ -28,10 +28,11 @@
 
 # Locations
 * Add relevant nations, cities, spots
+* nation, sub-nation, city, territory, landmark
 
 
 # Organizations
 * Add teams
 
 # Quotes
-* Add a famous lines route { by: "", quote: "" }
+* Add a famous lines route { by: "", quote: "", episode: "" }
