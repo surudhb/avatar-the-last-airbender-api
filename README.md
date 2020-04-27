@@ -6,7 +6,6 @@
 
 # TODOs
 
-* Connecting MONGO
 * Populating MONGO
 * Rate limiting
 * index.html
