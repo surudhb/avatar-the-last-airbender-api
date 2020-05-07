@@ -28,7 +28,8 @@
 
 # Locations
 * Add relevant nations, cities, spots
-* nation, sub-nation, city, territory, landmark
+* nation, sub-nation, city, territory, landmark, prison, island
+* add missed locations from all locations and minor locations
 
 
 # Organizations

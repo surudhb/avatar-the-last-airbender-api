@@ -15,11 +15,11 @@ app.use(express.static('public'))
 
 
 // ROUTES
-app.use('/api/bending', require('./routes/bending'))
-app.use('/api/characters', require('./routes/characters'))
-app.use('/api/episodes', require('./routes/episodes'))
-app.use('/api/locations', require('./routes/locations'))
-app.use('/api/organizations', require('./routes/organizations'))
+app.use('/api/v1/bending', require('./routes/v1/bending'))
+app.use('/api/v1/characters', require('./routes/v1/characters'))
+app.use('/api/v1/episodes', require('./routes/v1/episodes'))
+app.use('/api/v1/locations', require('./routes/v1/locations'))
+app.use('/api/v1/organizations', require('./routes/v1/organizations'))
 
 // ERROR HANDLER
 app.use((req, res, next) => {

@@ -4,14 +4,15 @@ const locationSchema = new mongoose.Schema({
     name: { type: String, required: true },
     type: {type: String, required: true}, // nation, city, vacation spot, dessert
     capital: String,
-    nation: String, // fire, earth, air, water
+    nation: { type: String, required: true }, // fire, earth, air, water
+    location: { type: String, required: true },
     governmentType: String,
     legalAuthority: String,
     spiritualAuthority: String,
-    pastLeaders: [String],
+    notableLeaders: [String],
+    notableMembers: [String],
     currency: String,
     firstAppearance: String, // episode title
-    lastAppearance: String // episode title
 })
 
-module.exports = mongoose.model('Location', locationSchema)
+module.exports = mongoose.model('locations', locationSchema)

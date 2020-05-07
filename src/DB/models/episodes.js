@@ -11,4 +11,4 @@ const episodeSchema = new mongoose.Schema({
     firstAired: Date
 })
 
-module.exports = mongoose.model('Episode', episodeSchema)
+module.exports = mongoose.model('episodes', episodeSchema)

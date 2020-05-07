@@ -1,9 +1,9 @@
 const express = require('express')
 const router = express.Router()
 
-const { isAlphabetical } = require('../utils/Validator')
+const { isAlphabetical } = require('../../utils/Validator')
 
-const Bending = require('../DB/models/bending')
+const Bending = require('../../DB/models/bending')
 
 /**
  * @route GET /api/bending

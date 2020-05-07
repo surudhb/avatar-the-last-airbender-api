@@ -1,0 +1,20 @@
+footer {
+    flex-shrink: 0;
+}
+
+#footer {
+    text-align: center;
+}
+
+
+.collapsible-body {
+    background-color: lightgrey !important;
+}
+
+ li {
+     margin: 0.5em;
+ }
+
+ .master {
+    border: none;
+ }

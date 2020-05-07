@@ -5,13 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://unpkg.com/papercss@1.6.1/dist/paper.min.css">
     <link rel="stylesheet" href="css/style.css">
+    <script type="text/javascript" src="./scripts/collapsible.js"></script>
     <title>ATLA API</title>
 </head>
 <body class='container padding-none'>
+    <!-- <img src="assets/atlahdwallpaper.jpg"> -->
+    <div class="background"></div>
     <h1>Avatar: The Last Airbender API</h1>
+    <p><i>"All in a day's work for the Avatar!" -Aang</i></p>
     <div class="paper container">
-        <p>API Documentation</p>
+        <h4>GET <code>/api/v1</code> <button class="master padding-none" style="float: right;" onclick="handleClick(event)">Expand All</button></h4>
+        <div class="column" onclick="handleCheck(event)">
+            <div class="collapsible">
+              <input id="collapsible1" type="checkbox" name="collapsible">
+              <label for="collapsible1"><span>BENDING <span style="float: right;">+</span></span></label>
+              <div class="collapsible-body">
+                  <ul>
+                    <li><span><code>/bending</code> :&emsp;Returns a <code>JSON</code> array of all bending types in Avatar.</span></li>
+                    <li><span><code>/bending/firebending</code> :&emsp;Returns a single <code>JSON</code> associated with <code>firebending</code>.</span></li>
+                  </ul>
+              </div>
+            </div>
+            <div class="collapsible">
+              <input id="collapsible2" type="checkbox" name="collapsible">
+              <label for="collapsible2"><span>EPISODES <span style="float: right;">+</span></span></label>
+                <div class="collapsible-body">
+                    <ul>
+                      <li><span><code>/episodes</code> :&emsp;Returns a <code>JSON</code> array of all episodes of Avatar.</span></li>
+                      <li><span><code>/episodes/id/203</code> :&emsp;Returns a single <code>JSON</code> object for Season 2 Episode 3</span></li>
+                      <li><span><code>/episodes/title/Avatar Day</code> :&emsp;Returns a single <code>JSON</code> object for the episode titled <code>Avatar Day</code></span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="collapsible">
+              <input id="collapsible3" type="checkbox" name="collapsible">
+              <label for="collapsible3"><span>LOCATIONS <span style="float: right;">+</span></span></label>
+              <div class="collapsible-body">
+                <ul>
+                  <li><span><code>/locations</code> :&emsp;Returns a <code>JSON</code> array of all locations in Avatar.</span></li>
+                  <li><span><code>/locations/name/Omashu</code> :&emsp;Returns a single <code>JSON</code> object about the location <code>Omashu</code></span></li>
+                </ul>
+            </div>
+            </div>
+            <div class="collapsible">
+              <input id="collapsible4" type="checkbox" name="collapsible">
+              <label for="collapsible4"><span>ORGANIZATIONS <span style="float: right;">+</span></span></label>
+              <div class="collapsible-body">
+                <ul>
+                  <li><span><code>/organizations</code> :&emsp;Returns a <code>JSON</code> array of all organizations/teams in Avatar.</span></li>
+                  <li><span><code>/organizations/name/Kyoshi Warriors</code> :&emsp;Returns a single <code>JSON</code> object about the <code>Kyoshi Warriors</code></span></li>
+                </ul>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="">
+        <p><code>/characters</code>, <code>/wildlife</code>, <code>/quotes</code> coming soon! :)</p>
     </div>
 </body>
-<footer class="col-fill col text-muted">Made with <span style='color:red'>&#x2764;</span> by Surudh Bhutani.</footer>
+<footer class="col-fill col text-muted"><div id=footer>Made with <span style='color:red'>&#x2764;</span> by Surudh Bhutani.</div></footer>
 </html>

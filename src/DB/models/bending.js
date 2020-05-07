@@ -13,4 +13,4 @@ const bendingSchema = new mongoose.Schema({
     weaknesses: [String]
 })
 
-module.exports = mongoose.model('bendings', bendingSchema, 'bending')
+module.exports = mongoose.model('bendings', bendingSchema, "bending")

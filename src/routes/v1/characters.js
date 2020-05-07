@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const { isAlphabetical } = require('../utils/Validator')
+const { isAlphabetical } = require('../../utils/Validator')
 
 /**
  * @route /api/characters
