@@ -23,10 +23,11 @@ footer {
 
  html {
      background: url('../assets/atlahdwallpaper.jpg');
-     background-position: bottom;
+     background-position: center;
      background-clip: border-box;
      background-repeat: no-repeat;
      background-size: cover;
+     background-attachment: fixed;
  }
 
  .paper {
