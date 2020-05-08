@@ -8,7 +8,9 @@ footer {
 
 
 .collapsible-body {
-    background-color: lightgrey !important;
+    background-color: lightslategray !important;
+    pointer-events: none;
+    cursor: none;
 }
 
  li {
@@ -17,4 +19,16 @@ footer {
 
  .master {
     border: none;
+ }
+
+ html {
+     background: url('../assets/atlahdwallpaper.jpg');
+     background-position: left;
+     background-clip: border-box;
+     background-repeat: no-repeat;
+     background-size: cover;
+ }
+
+ .paper {
+     background-color: rgba(255, 255, 255, 0.5);
  }

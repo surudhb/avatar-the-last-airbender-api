@@ -1,4 +1,6 @@
 function handleClick(e) {
+    console.log(e.target)
+    console.log(e.currentTarget)
     const masterButton = document.getElementsByClassName('master')[0]
     const inputs = document.getElementsByTagName('input')
     const makeActive = masterButton.textContent == "Expand All" ? true : false
@@ -10,8 +12,10 @@ function handleClick(e) {
 }
 
 function handleCheck(e) {
-    const text = e.target.innerText.split("\n")
-    const symbol = text[1] == "+" ? "-" : "+"
-    e.target.innerHTML = `<span>${text[0]} <span style=\"float: right;\">${symbol}</span></span>`
+    if(e.target.className != "collapsible") {
+        const text = e.target.innerText.split("\n")
+        const symbol = text[1] == "+" ? "-" : "+"
+        e.target.innerHTML = `<span>${text[0]} <span style=\"float: right;\">${symbol}</span></span>`
+    }
     e.stopPropagation()
 }
