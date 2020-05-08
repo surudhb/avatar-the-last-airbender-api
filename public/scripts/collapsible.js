@@ -1,6 +1,4 @@
 function handleClick(e) {
-    console.log(e.target)
-    console.log(e.currentTarget)
     const masterButton = document.getElementsByClassName('master')[0]
     const inputs = document.getElementsByTagName('input')
     const makeActive = masterButton.textContent == "Expand All" ? true : false
