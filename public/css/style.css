@@ -50,3 +50,10 @@ html {
 .collapsible input[type="checkbox"]:checked + label::after {
     content: '−';
 }
+
+/* Utility classes (replaces inline styles) */
+.text-center  { text-align: center; }
+.float-right  { float: right; }
+.code-block   { background-color: whitesmoke; }
+.text-muted   { color: #8899aa; }
+.heart        { color: red; }

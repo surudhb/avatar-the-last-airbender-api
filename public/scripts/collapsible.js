@@ -7,3 +7,6 @@ function handleClick(e) {
   }
   btn.textContent = expand ? 'Collapse All' : 'Expand All'
 }
+
+// Attach via addEventListener instead of inline onclick
+document.querySelector('.master').addEventListener('click', handleClick)

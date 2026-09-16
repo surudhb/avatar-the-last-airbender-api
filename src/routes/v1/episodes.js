@@ -1,15 +1,18 @@
 import { Hono } from 'hono'
 import { isAlphabetical, isNumeric } from '../../utils/Validator.js'
 import { parseRow, parseRows } from '../../utils/db.js'
+import { getPagination } from '../../utils/pagination.js'
 
 const app = new Hono()
 
 app.get('/', async (c) => {
-  const { results } = await c.env.DB.prepare('SELECT * FROM episodes').all()
+  const { limit, offset } = getPagination(c.req.query())
+  const { results } = await c.env.DB.prepare(
+    'SELECT * FROM episodes LIMIT ? OFFSET ?'
+  ).bind(limit, offset).all()
   return c.json(parseRows(results))
 })
 
-// /id/:id  e.g. 109 for Season 1 Episode 9
 app.get('/id/:id', async (c) => {
   const id = c.req.param('id')
   if (!isNumeric(id)) {
