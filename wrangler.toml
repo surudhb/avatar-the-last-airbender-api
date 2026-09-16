@@ -7,7 +7,7 @@ compatibility_date = "2025-09-15"
 [[d1_databases]]
 binding = "DB"
 database_name = "avatar-api"
-database_id = "placeholder-run-wrangler-d1-create-avatar-api"
+database_id = "d1b470c5-c7ad-4ab3-a511-6c127fcdbfba"
 
 # Static assets served alongside the Worker (public/ directory)
 [assets]
