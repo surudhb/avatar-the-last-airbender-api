@@ -6,30 +6,47 @@ footer {
     text-align: center;
 }
 
-
 .collapsible-body {
-    background-color: lightslategray !important;
+    background-color: lightslategray;
     pointer-events: none;
-    cursor: none;
+    cursor: default;
 }
 
- li {
-     margin: 0.5em;
- }
+li {
+    margin: 0.5em;
+}
 
- .master {
+.master {
     border: none;
- }
+}
 
- html {
-     background: url('../assets/atlahdwallpaper.jpg');
-     background-position: center;
-     background-clip: border-box;
-     background-repeat: no-repeat;
-     background-size: cover;
-     background-attachment: fixed;
- }
+html {
+    background: url('../assets/atlahdwallpaper.jpg');
+    background-position: center;
+    background-clip: border-box;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
 
- .paper {
-     background-color: rgba(255, 255, 255, 0.5);
- }
+.paper {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* +/− indicator driven by checkbox state — no JS needed */
+.collapsible label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+}
+
+.collapsible label::after {
+    content: '+';
+    flex-shrink: 0;
+    margin-left: 1rem;
+}
+
+.collapsible input[type="checkbox"]:checked + label::after {
+    content: '−';
+}
