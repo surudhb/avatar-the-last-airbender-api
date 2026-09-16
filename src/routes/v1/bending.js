@@ -1,11 +1,15 @@
 import { Hono } from 'hono'
 import { isAlphabetical } from '../../utils/Validator.js'
 import { parseRow, parseRows } from '../../utils/db.js'
+import { getPagination } from '../../utils/pagination.js'
 
 const app = new Hono()
 
 app.get('/', async (c) => {
-  const { results } = await c.env.DB.prepare('SELECT * FROM bending').all()
+  const { limit, offset } = getPagination(c.req.query())
+  const { results } = await c.env.DB.prepare(
+    'SELECT * FROM bending LIMIT ? OFFSET ?'
+  ).bind(limit, offset).all()
   return c.json(parseRows(results))
 })
 

@@ -13,3 +13,10 @@ database_id = "d1b470c5-c7ad-4ab3-a511-6c127fcdbfba"
 [assets]
 directory = "./public"
 binding = "ASSETS"
+
+# Rate limiting: 60 requests per minute per IP across all /api/* routes
+[[unsafe.bindings]]
+name = "RATE_LIMITER"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 60, period = 60 }
