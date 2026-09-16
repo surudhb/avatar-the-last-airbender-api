@@ -1,50 +1,33 @@
-const express = require('express')
-const router = express.Router()
+import { Hono } from 'hono'
+import { isAlphabetical, isNumeric } from '../../utils/Validator.js'
+import { parseRow, parseRows } from '../../utils/db.js'
 
-const { isNumeric, isAlphabetical } = require('../../utils/Validator')
+const app = new Hono()
 
-const Episodes = require('../../DB/models/episodes')
-
-/**
- * @route /api/episodes
- * @returns catch all to return all episode data
- */
-router.get('/', (req, res, next) => {
-    if(req.params.count > 0) next()
-    Episodes.find({}, { _id:0 }) // do not return _id field
-    .then(data => res.status(200).json(data))
-    .catch(next)
+app.get('/', async (c) => {
+  const { results } = await c.env.DB.prepare('SELECT * FROM episodes').all()
+  return c.json(parseRows(results))
 })
 
-/**
- * @route /api/episodes/:id where id= 109 for Season 1 Episode 9
- * @returns synopsis, characters, title, id, runtime, airdate, writer, locations, book
- */
-router.get('/id/:id', (req, res, next) => {
-    if(isNumeric(req.params.id)) {
-        const id = parseInt(req.params.id)
-        Episodes.findOne({id: id}, {_id: 0})
-        .then(data => res.status(200).json(data))
-        .catch(next)
-    } else {
-        next(new Error(`Invalid input: ${id}. Enter 103 for information on Season 1 Episode 3.`))
-    }
+// /id/:id  e.g. 109 for Season 1 Episode 9
+app.get('/id/:id', async (c) => {
+  const id = c.req.param('id')
+  if (!isNumeric(id)) {
+    return c.json({ error: `Invalid input: ${id}. Enter 103 for information on Season 1 Episode 3.` }, 400)
+  }
+  const row = await c.env.DB.prepare('SELECT * FROM episodes WHERE episodeId = ?').bind(parseInt(id, 10)).first()
+  if (!row) return c.json({ error: 'Not found' }, 404)
+  return c.json(parseRow(row))
 })
 
-
-/**
- * @route /api/episodes/title/:title where title = The boy in the iceberg
- * @returns synopsis, characters, id, title, runtime, airdate, writer, locations, book
- */
-router.get('/title/:title', (req, res, next) => {
-    const title = req.params.title
-    if(isAlphabetical(title)) {
-        Episodes.findOne({name: title}, {_id: 0})
-        .then(data => res.status(200).json(data))
-        .catch(next)
-    } else {
-        next(new Error(`Invalid input: ${title}. Episode titles should only contain alphabetical characters.`))
-    }
+app.get('/title/:title', async (c) => {
+  const title = c.req.param('title')
+  if (!isAlphabetical(title)) {
+    return c.json({ error: `Invalid input: ${title}. Episode titles should only contain alphabetical characters.` }, 400)
+  }
+  const row = await c.env.DB.prepare('SELECT * FROM episodes WHERE name = ? COLLATE NOCASE').bind(title).first()
+  if (!row) return c.json({ error: 'Not found' }, 404)
+  return c.json(parseRow(row))
 })
 
-module.exports = router;
+export default app
