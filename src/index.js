@@ -1,5 +1,6 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors'
+import { rateLimit } from './middleware/rateLimit.js'
 import bending from './routes/v1/bending.js'
 import characters from './routes/v1/characters.js'
 import episodes from './routes/v1/episodes.js'
@@ -9,6 +10,7 @@ import organizations from './routes/v1/organizations.js'
 const app = new Hono()
 
 app.use('*', cors())
+app.use('/api/*', rateLimit)
 
 app.route('/api/v1/bending', bending)
 app.route('/api/v1/characters', characters)
