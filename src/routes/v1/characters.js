@@ -1,28 +1,22 @@
-const express = require('express')
-const router = express.Router()
+import { Hono } from 'hono'
+import { isAlphabetical } from '../../utils/Validator.js'
+import { parseRow, parseRows } from '../../utils/db.js'
 
-const { isAlphabetical } = require('../../utils/Validator')
+const app = new Hono()
 
-/**
- * @route /api/characters
- * @returns catch all to return all characters
- */
-router.get('/', (req, res, next) => {
-    if(req.params.count > 0) next()
-    res.status(200).json({msg: `Sending you data for all characters`})
+app.get('/', async (c) => {
+  const { results } = await c.env.DB.prepare('SELECT * FROM characters').all()
+  return c.json(parseRows(results))
 })
 
-/**
- * @route /api/characters/:name
- * @returns nation, first appeared, affiliation, teams, aliases, love interest, age, overview
- */
-router.get('/:name', (req, res, next) => {
-    const name = req.params.name
-    if(isAlphabetical(name)) {
-        res.status(200).json({msg: `Requesting data for character: ${name}`})
-    } else {
-        next(new Error(`Invalid input: ${name}. Name should only contain alphabetical characters.`))
-    }
+app.get('/:name', async (c) => {
+  const name = c.req.param('name')
+  if (!isAlphabetical(name)) {
+    return c.json({ error: `Invalid input: ${name}. Name should only contain alphabetical characters.` }, 400)
+  }
+  const row = await c.env.DB.prepare('SELECT * FROM characters WHERE name = ? COLLATE NOCASE').bind(name).first()
+  if (!row) return c.json({ error: 'Not found' }, 404)
+  return c.json(parseRow(row))
 })
 
-module.exports = router;
+export default app

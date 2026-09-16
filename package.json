@@ -1,12 +1,13 @@
 {
   "name": "atlaapi",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Avatar: The Last Airbender API",
-  "main": "app.js",
+  "type": "module",
   "scripts": {
-    "dev": "nodemon src/app",
-    "start": "node src/app",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:init": "wrangler d1 execute avatar-api --local --file=schema.sql",
+    "db:init:remote": "wrangler d1 execute avatar-api --file=schema.sql"
   },
   "keywords": [
     "Avatar",
@@ -19,13 +20,11 @@
   ],
   "author": "Number13",
   "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^2.0.3"
-  },
   "dependencies": {
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "mongoose": "^5.9.10"
+    "hono": "^4.6.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.0.0",
+    "wrangler": "^4.132.0"
   }
 }

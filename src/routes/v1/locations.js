@@ -1,34 +1,22 @@
-const express = require('express')
-const router = express.Router()
+import { Hono } from 'hono'
+import { isAlphabetical } from '../../utils/Validator.js'
+import { parseRow, parseRows } from '../../utils/db.js'
 
-const { isAlphabetical } = require('../../utils/Validator')
+const app = new Hono()
 
-const Locations = require('../../DB/models/locations')
-
-/**
- * @route /api/locations
- * @returns catch all to return all locations
- */
-router.get('/', (req, res, next) => {
-    if(req.params.count > 0) next()
-    Locations.find({}, { _id:0 }) // do not return _id field
-    .then(data => res.status(200).json(data))
-    .catch(next)
+app.get('/', async (c) => {
+  const { results } = await c.env.DB.prepare('SELECT * FROM locations').all()
+  return c.json(parseRows(results))
 })
 
-/**
- * @route /api/locations/:name
- * @returns general information and popular members of group
- */
-router.get('/:location', (req, res, next) => {
-    const location = req.params.location
-    if(isAlphabetical(location)) {
-        Locations.findOne({name: location}, { _id: 0})
-        .then(data => res.status(200).json(data))
-        .catch(next)
-    } else {
-        next(new Error(`Invalid input: ${location}. Location names should only contain alphabetical characters.`))
-    }
+app.get('/:location', async (c) => {
+  const location = c.req.param('location')
+  if (!isAlphabetical(location)) {
+    return c.json({ error: `Invalid input: ${location}. Location names should only contain alphabetical characters.` }, 400)
+  }
+  const row = await c.env.DB.prepare('SELECT * FROM locations WHERE name = ? COLLATE NOCASE').bind(location).first()
+  if (!row) return c.json({ error: 'Not found' }, 404)
+  return c.json(parseRow(row))
 })
 
-module.exports = router;
+export default app
