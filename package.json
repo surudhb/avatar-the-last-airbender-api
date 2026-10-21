@@ -21,7 +21,7 @@
   "author": "Number13",
   "license": "ISC",
   "dependencies": {
-    "hono": "^4.6.0"
+    "hono": "^4.13.11"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^5.0.0",
